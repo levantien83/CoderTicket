@@ -26,12 +26,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'bootstrap', '~> 4.0.0.alpha1'
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'rails-assets-tether', '>= 1.1.0'
+# gem 'materialize-sass'
 gem 'simple_form'
 gem 'quiet_assets'
 gem 'better_errors', group: :development
 gem 'font-awesome-rails'
 gem 'font-kit-rails', '~> 1.2.0'
+gem 'coffee-script-source', '1.8.0'
+gem 'rails_12factor', group: 'production'
+gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -47,6 +52,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
