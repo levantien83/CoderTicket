@@ -11,8 +11,12 @@
 # end
 
 class EventsController < ApplicationController
-  def index
-    @events = Event.upcoming.search(params[:search])
+  def index    
+    @events = Event.upcoming.published.search(params[:search]).order('starts_at asc')
+  end
+
+  def my_events
+    @events = current_user.events.order('created_at desc')
   end
 
   def full
@@ -33,7 +37,7 @@ class EventsController < ApplicationController
     @event.category_id ||= 1
     if @event.save
       flash[:notice] = "Event created"
-      redirect_to root_path
+      redirect_to @event
     else
       flash[:error] = @event.errors.full_messages.to_sentence
       render 'new'
@@ -42,6 +46,13 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+  end
+
+  def publish_now
+    @event = Event.find(params[:event_id])
+    @event.published_at = Time.now
+    @event.save!
+    redirect_to @event
   end
 
   private

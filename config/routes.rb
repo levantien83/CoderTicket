@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'events#index'
 
   resources :events do
+    get :publish_now
     resources :tickets
   end
-  # The priority is based upon order of creation: first created -> highest priority.
+  get '/my_events' => 'events#my_events'
+    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

@@ -23,7 +23,9 @@
           <li class="nav-item">               
             <%= link_to('Create an event', new_event_path, class: 'nav-link') %>              
           </li>
-                          
+          <li class="nav-item">               
+            <%= link_to('My events', my_events_path, class: 'nav-link') %>              
+          </li>                          
         <% else %>   
           <li class="nav-item">
             <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>        
@@ -33,12 +35,7 @@
           </li>            
         <% end -%>
       </ul>
-    </nav>  
-    <% unless flash.empty? %>
-      <% flash.each do |key, value| %>
-        <div class="alert alert-warning"><%= value %></div> 
-      <% end -%>
-    <% end -%>
+    </nav>     
     <%= yield %>
 
   </body>

@@ -35,8 +35,8 @@ The following **required** functionality is complete:
 
 * [x] User can sign up by providing their email, password, and name. 
 * [x] User can login using an email and password. 
-* [ ] Users can create events. 
-* [ ] Users must click "publish event" before an event becomes viewable to other users. 
+* [x] Users can create events. 
+* [x] Users must click "publish event" before an event becomes viewable to other users. 
 * [ ] Users can create ticket types for that event. 
 * [ ] Users can create venues.
 * [ ] An event must have at least one `ticket_type` defined before it can be published. 

@@ -8,6 +8,8 @@
 #     t.string   "name"
 #     t.datetime "created_at",                null: false
 #     t.datetime "updated_at",                null: false
+#     t.integer  "user_id"
+#     t.datetime "published_at"
 #   end
 
 class Event < ActiveRecord::Base
@@ -21,6 +23,7 @@ class Event < ActiveRecord::Base
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 
   scope :upcoming, -> { where("starts_at > ?", Time.now) }
+  scope :published, -> { where('user_id IS ? OR published_at IS NOT ?', nil, nil) }
 
   def self.search(search)
     if search
@@ -28,5 +31,5 @@ class Event < ActiveRecord::Base
     else
       all
     end
-  end
+  end    
 end
