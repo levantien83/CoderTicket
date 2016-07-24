@@ -4,9 +4,9 @@
 
 Submitted by: **LE VAN TIEN**
 
-Time spent: **5** hours
+Time spent: **20** hours
 
-URL: **Insert your Heroku URL here**
+URL: **https://vticket.herokuapp.com**
 
 SimpleCov Test Coverage: **Insert percentage or link to report here**
 
