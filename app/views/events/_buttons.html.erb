@@ -5,12 +5,14 @@
 <% end -%>
 
 <% if @event.user == current_user %>
-  <h5> Owner options </h5>
-    <%= link_to 'CREAT TICKET TYPES', new_event_ticket_path(@event), class: 'btn btn-lg btn-block btn-danger' %>
-  <br>
-  <% if @event.published_at == nil %>    
-    <%= link_to 'PUBLISH NOW', event_publish_now_path(@event), class: 'btn btn-lg btn-block btn-danger' %>
+  <br><h5> Owner options </h5>
+  <h5><%= link_to 'EDIT EVENT', edit_event_path(@event), class: 'label label-danger' %></h5>
+  <h5><%= link_to 'ADD TICKET TYPES', new_event_ticket_type_path(@event), class: 'label label-danger' %></h5>
+  <% if @event.published_at == nil %>
+    <% if @event.ticket_types.any? %>
+     <h5><%= link_to 'PUBLISH NOW', event_publish_now_path(@event), class: 'label label-danger' %></h5>
+    <% end -%>
   <% else %>  
-    <%= link_to 'UNPUBLISH', event_unpublish_path(@event), class: 'btn btn-lg btn-block btn-danger' %>
+    <h5><%= link_to 'UNPUBLISH', event_unpublish_path(@event), class: 'label label-danger' %></h5>
   <% end %>
 <% end %>

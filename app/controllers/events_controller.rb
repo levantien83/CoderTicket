@@ -11,6 +11,9 @@
 # end
 
 class EventsController < ApplicationController
+  before_action :set_event, only: [:check_owner, :show, :edit, :update, :publish_now, :unpublish]
+  before_action :check_owner, only: [:edit, :update, :publish_now, :unpublish]
+
   def index    
     @events = Event.upcoming.published.search(params[:search]).order('starts_at asc')
   end
@@ -32,40 +35,60 @@ class EventsController < ApplicationController
   def create    
     @categories = Category.all
     @venues = Venue.all
-    @event = current_user.events.new(event_params)
-    @event.venue_id ||= 1
-    @event.category_id ||= 1
+    @event = current_user.events.new(event_params)    
     if @event.save
-      flash[:notice] = "Event created"
+      flash[:notice] = 'Event created'
       redirect_to @event
     else
       flash[:error] = @event.errors.full_messages.to_sentence
       render 'new'
     end
-  end  
-
-  def show
-    @event = Event.find(params[:id])
   end
 
-  def publish_now
-    @event = Event.find(params[:event_id])
+  def show    
+  end
+
+  def edit
+    @categories = Category.all
+    @venues = Venue.all
+  end
+
+  def update
+    if @event.update(event_params)
+      flash[:notice] = 'Event was successfully updated.'
+      redirect_to @event
+    else
+      flash[:error] = @event.errors.full_messages.to_sentence
+      render 'edit'
+    end
+  end
+
+  def publish_now    
     @event.published_at = Time.now
     @event.save!
     redirect_to @event
   end
 
-  def unpublish
-    @event = Event.find(params[:event_id])
+  def unpublish    
     @event.published_at = nil
     @event.save!
     redirect_to @event
   end
 
   private
+  def set_event
+      @event = Event.find(params[:id] || params[:event_id])
+  end
+
+  def check_owner
+    if current_user != @event.user
+      flash[:alert] = 'You have no permission'
+      redirect_to root_path
+    end
+  end
 
   def event_params
-    params.require(:event).permit(:name, :venue, :category, 
+    params.require(:event).permit(:name, :venue_id, :category_id, 
       :starts_at, :ends_at, :hero_image_url, :extended_html_description)
   end
 end

@@ -37,7 +37,7 @@ e = Event.create({
   DESC
 })
 e.ticket_types << TicketType.create(name: '2016 Việt Nam Thử Thách Chiến Thắng dành cho những tay đua đăng kí sớm.', price: 500000, max_quantity: 95)
-e.ticket_types << TicketType.create(name: 'Việt Nam Thử Thách Chiến Thắng ( Giá chính thức)', price: 2000000, max_quantity: 5)
+e.ticket_types << TicketType.create(name: 'Việt Nam Thử Thách Chiến Thắng (Giá chính thức)', price: 2000000, max_quantity: 5)
 
 
 # Second event:

@@ -1,0 +1,12 @@
+<div class="card card-block">
+  <h4 class="card-title">Ticket Type Form</h4>
+  <p class="card-text">
+    <%= simple_form_for [@event, @ticket_type] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :price, placeholder: 'Defaulf value is VND 100.000' %>
+      <%= f.input :max_quantity %>
+      <%= f.submit class:"btn btn-primary" %>
+      <%= link_to 'Cancel', @event, class:"btn btn-primary" %>
+    <% end %>
+  </p>
+</div>

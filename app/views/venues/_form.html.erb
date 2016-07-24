@@ -1,0 +1,12 @@
+<div class="card card-block">
+  <h4 class="card-title">Venue Form</h4>
+  <p class="card-text">
+    <%= simple_form_for [@venue] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :full_address %>
+      <%= f.input :region_id, :include_blank => false, collection: Region.all %>
+      <%= f.submit class:"btn btn-primary" %>
+      <%= link_to 'Cancel', root_path, class:"btn btn-primary" %>
+    <% end %>
+  </p>
+</div>

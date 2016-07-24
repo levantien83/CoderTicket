@@ -1,6 +1,6 @@
 <% if @event.published_at == nil && @event.user != current_user && @event.user != nil %>
   <br><br><h1>Get lost?</h1>
-  <%= link_to 'Back', root_path, class: 'btn btn-lg btn-block btn-danger' %>    
+  <%= link_to 'Back', root_path, class: 'btn btn-lg btn-danger' %>    
 <% else %>
   <%= render 'event_details' %>
 <% end -%>

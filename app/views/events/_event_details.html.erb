@@ -10,11 +10,14 @@
         <% @event.ticket_types.each do |ticket_type| %>
           <div class="row">
             <div class="col-md-6">
-              <%= ticket_type.name %>
+              <%= ticket_type.name %>(<%= ticket_type.max_quantity %>)
             </div>
 
             <div class="col-md-6 price text-right">
               <%= number_to_currency(ticket_type.price, unit: 'VND', precision: 0) %>
+              <% if @event.user == current_user %>
+                <%= link_to 'remove', event_ticket_type_path(@event, ticket_type), method: :delete, class: 'label label-warning' %>
+              <% end -%>
             </div>
           </div>
           <div class="clearfix"></div>

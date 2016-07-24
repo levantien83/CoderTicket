@@ -25,6 +25,9 @@
           </li>
           <li class="nav-item">               
             <%= link_to('My events', my_events_path, class: 'nav-link') %>              
+          </li>
+          <li class="nav-item">               
+            <%= link_to('Create a venue', new_venue_path, class: 'nav-link') %>              
           </li>                          
         <% else %>   
           <li class="nav-item">
@@ -35,7 +38,13 @@
           </li>            
         <% end -%>
       </ul>
-    </nav>     
+    </nav>
+    <% unless flash.empty? %>
+      <br><br>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-warning"><%= value %></div> 
+      <% end -%>
+    <% end -%>     
     <%= yield %>
 
   </body>

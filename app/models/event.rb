@@ -18,7 +18,6 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :ticket_types, dependent: :destroy
 
-
   validates_presence_of :name, :venue, :category, :starts_at
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
 

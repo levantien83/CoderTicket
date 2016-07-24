@@ -1,12 +1,7 @@
-<div class="container"><br><br>
-  <% unless flash.empty? %>
-    <% flash.each do |key, value| %>
-      <div class="alert alert-warning"><%= value %></div> 
-    <% end -%>
-  <% end -%>
+<div class="container"><br><br>  
   <h1>New event</h1>
 
   <%= render 'form' %>
 
-  <%= link_to 'Back', root_path %>
+  <%= link_to 'Cancel', root_path, class:"btn btn-primary" %>
 </div>

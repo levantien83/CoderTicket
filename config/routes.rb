@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     get :publish_now
     get :unpublish
     resources :tickets
+    resources :ticket_types
   end
+
+  resources :venues, only: [:new, :create]
+
   get '/my_events' => 'events#my_events'
     # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
