@@ -21,16 +21,21 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @categories = Category.all
+    @venues = Venue.all
   end
 
-  def create
-    load_user
-    @event = @user.events.new(event_params)
+  def create    
+    @categories = Category.all
+    @venues = Venue.all
+    @event = current_user.events.new(event_params)
+    @event.venue_id ||= 1
+    @event.category_id ||= 1
     if @event.save
       flash[:notice] = "Event created"
       redirect_to root_path
-    else  
-      flash[:error] = "Errors"
+    else
+      flash[:error] = @event.errors.full_messages.to_sentence
       render 'new'
     end
   end  

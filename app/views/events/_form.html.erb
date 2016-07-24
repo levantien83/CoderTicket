@@ -1,0 +1,15 @@
+<div class="card card-block">
+  <h4 class="card-title">Event Form</h4>
+  <p class="card-text">
+    <%= simple_form_for @event do |f| %>
+      <%= f.input :name %>
+      <%= f.select :category_id, @categories.map{|u| [u.name, u.id]}, {}, class: "form-control" %>      
+      <%= f.input :starts_at, :as => :datetime %>
+      <%= f.input :ends_at, :as => :datetime %>      
+      <%= f.select :category_id, @venues.map{|u| [u.name, u.id]}, {}, class: "form-control" %>
+      <%= f.input :hero_image_url %>
+      <%= f.input :extended_html_description %>
+      <%= f.submit class:"btn btn-primary" %>
+    <% end %>
+  </p>
+</div>

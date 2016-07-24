@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CsTemplate</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>CsTemplate</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
-    <ul class="nav navbar-nav">
-      
-      <% if user_signed_in? %> 
-        <li class="nav-item">               
-          <%= link_to('Sign out', 
-                destroy_user_session_path, 
-                :method => :delete,
-                class: 'nav-link'
-                ) %>              
-        </li>
-                        
-      <% else %>   
-        <li class="nav-item">
-          <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>        
-        </li>
-        <li class="nav-item"> 
-          <%= link_to 'Sign in', user_session_path, class: 'nav-link' %>
-        </li>            
+    <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+      <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
+      <ul class="nav navbar-nav">
+        
+        <% if user_signed_in? %> 
+          <li class="nav-item">               
+            <%= link_to('Sign out', 
+                  destroy_user_session_path, 
+                  :method => :delete,
+                  class: 'nav-link'
+                  ) %>              
+          </li>
+          <li class="nav-item">               
+            <%= link_to('Create an event', new_event_path, class: 'nav-link') %>              
+          </li>
+                          
+        <% else %>   
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>        
+          </li>
+          <li class="nav-item"> 
+            <%= link_to 'Sign in', user_session_path, class: 'nav-link' %>
+          </li>            
+        <% end -%>
+      </ul>
+    </nav>  
+    <% unless flash.empty? %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-warning"><%= value %></div> 
       <% end -%>
-    </ul>
-  </nav>  
+    <% end -%>
+    <%= yield %>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>

@@ -1,10 +1,10 @@
-# Homework 3 - *Name of App*
+# Homework 3 - *TicketCounter*
 
-**Name of your app** is a Ruby on Rails blog application that allows users to create and buy tickets to cool events. 
+**TicketCounter** is a Ruby on Rails blog application that allows users to create and buy tickets to cool events. 
 
-Submitted by: **Your Name Here**
+Submitted by: **LE VAN TIEN**
 
-Time spent: **X** hours
+Time spent: **5** hours
 
 URL: **Insert your Heroku URL here**
 
