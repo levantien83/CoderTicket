@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :events do
     get :publish_now
+    get :unpublish
     resources :tickets
   end
   get '/my_events' => 'events#my_events'

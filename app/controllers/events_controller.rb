@@ -55,6 +55,13 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def unpublish
+    @event = Event.find(params[:event_id])
+    @event.published_at = nil
+    @event.save!
+    redirect_to @event
+  end
+
   private
 
   def event_params
